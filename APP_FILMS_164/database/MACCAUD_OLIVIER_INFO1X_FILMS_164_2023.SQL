@@ -59,7 +59,7 @@ INSERT INTO `t_film` (`id_film`, `nom_film`, `duree_film`, `description_film`, `
 CREATE TABLE `t_genre` (
   `id_genre` int(11) NOT NULL,
   `intitule_genre` varchar(50) DEFAULT NULL,
-  `date_ins_genre` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `date_ins_genre` datetime
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
