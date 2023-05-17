@@ -102,15 +102,13 @@ def genres_ajouter_wtf():
         try:
             if form.validate_on_submit():
                 name_genre_wtf = form.nom_genre_wtf.data
-                Num_bureau_wtf = form.Num_bureau_wtf.data
                 name_genre = name_genre_wtf.lower()
-                Num_bureau = Num_bureau_wtf.lower()
-                valeurs_insertion_dictionnaire = {"value_intitule_genre": name_genre, "value_num_bureau": Num_bureau}
+                valeurs_insertion_dictionnaire = {"value_intitule_genre": name_genre}
 
                 print("valeurs_insertion_dictionnaire ", valeurs_insertion_dictionnaire)
 
-                strsql_insert_genre = """INSERT INTO t_bureau (id_bureau, Salle_bureau, Num_bureau) VALUES 
-                                        (NULL,%(value_intitule_genre)s), (NULL,%(value_num_bureau)s)"""
+                strsql_insert_genre = """INSERT INTO t_bureau (id_bureau, Salle_bureau) VALUES 
+                                        (NULL,%(value_intitule_genre)s)"""
                 with DBconnection() as mconn_bd:
                     mconn_bd.execute(strsql_insert_genre, valeurs_insertion_dictionnaire)
 
