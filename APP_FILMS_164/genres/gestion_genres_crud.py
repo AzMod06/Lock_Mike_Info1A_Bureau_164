@@ -249,7 +249,7 @@ def genre_delete_wtf():
                 valeur_delete_dictionnaire = {"value_id_genre": id_genre_delete}
                 print("valeur_delete_dictionnaire ", valeur_delete_dictionnaire)
 
-                str_sql_delete_films_genre = """DELETE FROM t_reservation WHERE fk_bureau = %(value_id_genre)s"""
+                str_sql_delete_films_genre = """DELETE FROM t_reservation WHERE id_reservation = %(value_id_genre)s"""
                 str_sql_delete_idgenre = """DELETE FROM t_bureau WHERE id_bureau = %(value_id_genre)s"""
                 # Manière brutale d'effacer d'abord la "fk_genre", même si elle n'existe pas dans la "t_genre_film"
                 # Ensuite on peut effacer le genre vu qu'il n'est plus "lié" (INNODB) dans la "t_genre_film"
@@ -271,7 +271,7 @@ def genre_delete_wtf():
             str_sql_genres_films_delete = """SELECT id_reservation, Nom_pers, id_bureau, Salle_bureau FROM t_reservation 
                                             INNER JOIN t_personne ON t_reservation.fk_personne = t_personne.id_pers
                                             INNER JOIN t_bureau ON t_reservation.fk_bureau = t_bureau.id_bureau
-                                            WHERE fk_bureau = %(value_id_genre)s"""
+                                            WHERE id_reservation = %(value_id_genre)s"""
 
             with DBconnection() as mydb_conn:
                 mydb_conn.execute(str_sql_genres_films_delete, valeur_select_dictionnaire)
