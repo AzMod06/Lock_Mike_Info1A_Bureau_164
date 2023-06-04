@@ -5,7 +5,7 @@ CREATE DATABASE IF NOT EXISTS database_i164;
 USE database_i164;
 
 -- --------------------------------------------------------
--- Hôte:                         127.0.0.1
+-- Hôte:                         localhost
 -- Version du serveur:           8.0.30 - MySQL Community Server - GPL
 -- SE du serveur:                Win64
 -- HeidiSQL Version:             12.1.0.6537
@@ -29,57 +29,59 @@ USE `database_i164`;
 CREATE TABLE IF NOT EXISTS `t_bureau` (
   `id_bureau` int NOT NULL AUTO_INCREMENT,
   `Salle_bureau` varchar(50) NOT NULL DEFAULT '0',
-  `Num_bureau` varchar(50) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id_bureau`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `Num_bureau` int DEFAULT NULL,
+  PRIMARY KEY (`id_bureau`),
+  UNIQUE KEY `Num_bureau` (`Num_bureau`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table database_i164.t_bureau : ~4 rows (environ)
+-- Listage des données de la table database_i164.t_bureau : ~5 rows (environ)
 INSERT INTO `t_bureau` (`id_bureau`, `Salle_bureau`, `Num_bureau`) VALUES
-	(1, 'TROIS', 'UN'),
-	(2, 'TROIS', 'DEUX'),
-	(3, 'TROIS', 'TROIS'),
-	(4, 'TROIS', 'QUATRE');
+	(1, 'genève', 1),
+	(2, 'genève', 2),
+	(3, 'genève', 3),
+	(4, 'genève', 4),
+	(9, 'jura', 9);
 
 -- Listage de la structure de table database_i164. t_personne
 CREATE TABLE IF NOT EXISTS `t_personne` (
   `id_pers` int NOT NULL AUTO_INCREMENT,
   `Prenom_pers` varchar(50) NOT NULL,
-  `Nom_pers` varchar(50) NOT NULL,
-  `Alias_pers` varchar(50) NOT NULL,
+  `Nom_pers` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `Alias_pers` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   PRIMARY KEY (`id_pers`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table database_i164.t_personne : ~1 rows (environ)
+-- Listage des données de la table database_i164.t_personne : ~5 rows (environ)
 INSERT INTO `t_personne` (`id_pers`, `Prenom_pers`, `Nom_pers`, `Alias_pers`) VALUES
-	(1, 'Mike', 'Lock', 'LOC');
+	(1, 'Mike', 'Lock', 'LOC'),
+	(2, 'Arthur', 'épédé', 'AEP'),
+	(3, 'Patrik', NULL, NULL),
+	(4, 'Marlo', NULL, NULL),
+	(5, '32', NULL, NULL),
+	(6, 'Piero', NULL, NULL),
+	(7, 'Arabe', NULL, NULL);
 
 -- Listage de la structure de table database_i164. t_reservation
 CREATE TABLE IF NOT EXISTS `t_reservation` (
   `id_reservation` int NOT NULL AUTO_INCREMENT,
-  `date_reservation` date NOT NULL,
-  `heure_reservation` time DEFAULT '00:00:00',
-  `nom_reservation` varchar(50) DEFAULT '0',
-  PRIMARY KEY (`id_reservation`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
--- Listage des données de la table database_i164.t_reservation : ~1 rows (environ)
-INSERT INTO `t_reservation` (`id_reservation`, `date_reservation`, `heure_reservation`, `nom_reservation`) VALUES
-	(1, '2023-10-10', '00:00:00', 'loc');
-
-
--- Listage de la structure de table database_i164. t_res_pers
-CREATE TABLE IF NOT EXISTS `t_res_pers` (
-  `id_res_pers` int NOT NULL AUTO_INCREMENT,
+  `fk_bureau` int DEFAULT NULL,
   `fk_personne` int DEFAULT NULL,
-  `fk_reservation` int DEFAULT NULL,
-  PRIMARY KEY (`id_res_pers`),
-  KEY `fk1_res_avoir_pers` (`fk_reservation`),
-  KEY `fk_pers_avoir_res` (`fk_personne`),
-  CONSTRAINT `fk1_res_avoir_pers` FOREIGN KEY (`fk_reservation`) REFERENCES `t_reservation` (`id_reservation`),
-  CONSTRAINT `fk_pers_avoir_res` FOREIGN KEY (`fk_personne`) REFERENCES `t_personne` (`id_pers`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `date_reserv` date DEFAULT NULL,
+  `heure_reserv` time DEFAULT NULL,
+  `fk_num_bureau` int DEFAULT NULL,
+  PRIMARY KEY (`id_reservation`) USING BTREE,
+  KEY `FK_t_reservaton_t_bureau` (`fk_bureau`),
+  KEY `FK_t_reservaton_t_bureauX` (`fk_num_bureau`),
+  KEY `FK_t_reservaton_t_personne` (`fk_personne`),
+  CONSTRAINT `FK_t_reservaton_t_bureau` FOREIGN KEY (`fk_bureau`) REFERENCES `t_bureau` (`id_bureau`),
+  CONSTRAINT `FK_t_reservaton_t_bureauX` FOREIGN KEY (`fk_num_bureau`) REFERENCES `t_bureau` (`Num_bureau`),
+  CONSTRAINT `FK_t_reservaton_t_personne` FOREIGN KEY (`fk_personne`) REFERENCES `t_personne` (`id_pers`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Listage des données de la table database_i164.t_res_pers : ~0 rows (environ)
+-- Listage des données de la table database_i164.t_reservation : ~2 rows (environ)
+INSERT INTO `t_reservation` (`id_reservation`, `fk_bureau`, `fk_personne`, `date_reserv`, `heure_reserv`, `fk_num_bureau`) VALUES
+	(1, 1, 4, '2023-06-04', '17:44:15', 4),
+	(2, 3, 2, '2023-06-04', '17:44:30', 1);
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
