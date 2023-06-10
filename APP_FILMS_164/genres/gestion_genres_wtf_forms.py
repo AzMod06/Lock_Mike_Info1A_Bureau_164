@@ -23,7 +23,7 @@ class FormWTFAjouterGenres(FlaskForm):
                                                                                   "d'espace à double, de double "
                                                                                   "apostrophe, de double trait union")
                                                                    ])
-    submit = SubmitField("Enregistrer genre")
+    submit = SubmitField("Confirmer")
 
 
 class FormWTFUpdateGenre(FlaskForm):
@@ -33,7 +33,7 @@ class FormWTFUpdateGenre(FlaskForm):
     """
     nom_genre_update_regexp = "^([A-Z]|[a-zÀ-ÖØ-öø-ÿ])[A-Za-zÀ-ÖØ-öø-ÿ]*['\- ]?[A-Za-zÀ-ÖØ-öø-ÿ]+$"
     date_genre_update_regexp = "^\d+$"
-    nom_genre_update_wtf = StringField("Modification de la salle ", validators=[Length(min=2, max=20, message="min 2 max 20"),
+    nom_genre_update_wtf = StringField("Clavioter le genre ", validators=[Length(min=2, max=20, message="min 2 max 20"),
                                                                           Regexp(nom_genre_update_regexp,
                                                                                  message="Pas de chiffres, de "
                                                                                          "caractères "
@@ -42,11 +42,12 @@ class FormWTFUpdateGenre(FlaskForm):
                                                                                          "apostrophe, de double trait "
                                                                                          "union")
                                                                           ])
-    date_genre_wtf_essai = StringField("Modification du numéro de bureau ", validators=[Length(min=1, max=20, message="min 1 max 20"),
+    date_genre_wtf_essai = StringField("Modification du numéro de bureau (Il est possible que le numéro ne soit pas disponible. Dans ce cas modifier) "
+                                       , validators=[Length(min=1, max=20, message="min 1 max 20"),
                                                                           Regexp(date_genre_update_regexp,
                                                                                  message="chiffre ONLY")
                                                                           ])
-    submit = SubmitField("Update genre")
+    submit = SubmitField("Confirmer la modification")
 
 
 class FormWTFDeleteGenre(FlaskForm):

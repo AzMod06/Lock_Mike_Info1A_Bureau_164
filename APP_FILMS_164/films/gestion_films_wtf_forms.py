@@ -25,7 +25,7 @@ class FormWTFAddFilm(FlaskForm):
                                                                               "apostrophe, de double trait union")
                                                                ])
 
-    submit = SubmitField("Enregistrer film")
+    submit = SubmitField("Enregistrer l'ajout")
 
 
 class FormWTFUpdateFilm(FlaskForm):
@@ -34,20 +34,11 @@ class FormWTFUpdateFilm(FlaskForm):
         Définition d'un "bouton" submit avec un libellé personnalisé.
     """
 
-    nom_film_update_wtf = StringField("Clavioter le titre", widget=TextArea())
-    duree_film_update_wtf = IntegerField("Durée du film (minutes)", validators=[NumberRange(min=1, max=5000,
-                                                                                            message=u"Min %(min)d et "
-                                                                                                    u"max %(max)d "
-                                                                                                    u"Selon Wikipédia "
-                                                                                                    u"L'Incendie du "
-                                                                                                    u"monastère du "
-                                                                                                    u"Lotus rouge "
-                                                                                                    u"durée 1620 "
-                                                                                                    u"min")])
+    nom_film_update_wtf = StringField("Modifier le prénom", widget=TextArea())
+    duree_film_update_wtf = StringField("Modifier le nom", widget=TextArea())
+    description_film_update_wtf = StringField("Modifier l'alias ", widget=TextArea())
 
-    description_film_update_wtf = StringField("Description du film ", widget=TextArea())
-
-    submit = SubmitField("Update film")
+    submit = SubmitField("Confirmer la modification")
 
 
 class FormWTFDeleteFilm(FlaskForm):
