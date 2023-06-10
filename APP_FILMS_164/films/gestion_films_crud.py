@@ -99,7 +99,7 @@ def film_update_wtf():
 
             str_sql_update_nom_film = """UPDATE t_personne SET Prenom_pers = %(value_nom_film)s,
                                                             Nom_pers = %(value_duree_film)s,
-                                                            Alias_pers = %(value_description_film)s,
+                                                            Alias_pers = %(value_description_film)s
                                                             WHERE id_pers = %(value_id_film)s"""
             with DBconnection() as mconn_bd:
                 mconn_bd.execute(str_sql_update_nom_film, valeur_update_dictionnaire)

@@ -9,7 +9,7 @@
 
     var settings = $.extend({
       'class': '',
-      'placeholder': 'Select Tags',
+      'placeholder': 'Choisir num. bureau',
       'dropClass': '',
       'dropFooter': true,
       'isOpen': false,
