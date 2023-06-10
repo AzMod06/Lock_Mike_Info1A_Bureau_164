@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS database_i164;
+DROP DATABASE IF EXISTS lock_mike_info1a_bureau_164;
 
-CREATE DATABASE IF NOT EXISTS database_i164;
+CREATE DATABASE IF NOT EXISTS lock_mike_info1a_bureau_164;
 
 USE lock_mike_info1a_bureau_164;
 
