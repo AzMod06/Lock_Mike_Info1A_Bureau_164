@@ -10,8 +10,11 @@ from flask import request
 from flask import session
 from flask import url_for
 
+
 from APP_FILMS_164.database.database_tools import DBconnection
 from APP_FILMS_164.erreurs.exceptions import *
+
+
 
 """
     Nom : films_genres_afficher
@@ -156,6 +159,7 @@ def edit_genre_film_selected():
                                                  f"{edit_genre_film_selected.__name__} ; "
                                                  f"{Exception_edit_genre_film_selected}")
 
+
     return render_template("films_genres/films_genres_modifier_tags_dropbox.html",
                            data_genres=data_genres_all,
                            data_film_selected=data_genre_film_selected,
@@ -181,17 +185,18 @@ def edit_genre_film_selected():
 def update_genre_film_selected():
     if request.method == "POST":
         try:
+
             # Récupère l'id du film sélectionné
-            id_film_selected = session['session_id_film_genres_edit']
-            print("session['session_id_film_genres_edit'] ", session['session_id_film_genres_edit'])
+            id_film_selected = session['session_id_reservation_edit']
+            print("session['session_id_reservation_edit'] ", session['session_id_reservation_edit'])
 
             # Récupère la liste des genres qui ne sont pas associés au film sélectionné.
-            old_lst_data_genres_films_non_attribues = session['session_lst_data_genres_films_non_attribues']
-            print("old_lst_data_genres_films_non_attribues ", old_lst_data_genres_films_non_attribues)
+            old_lst_data_genres_films_non_attribues = session['session_lst_data_reservation_non_attribues']
+            print("old_lst_data_reservation_non_attribues ", old_lst_data_genres_films_non_attribues)
 
             # Récupère la liste des genres qui sont associés au film sélectionné.
-            old_lst_data_genres_films_attribues = session['session_lst_data_genres_films_old_attribues']
-            print("old_lst_data_genres_films_old_attribues ", old_lst_data_genres_films_attribues)
+            old_lst_data_genres_films_attribues = session['session_lst_data_reservation_old_attribues']
+            print("old_lst_data_reservation_old_attribues ", old_lst_data_genres_films_attribues)
 
             # Effacer toutes les variables de session.
             session.clear()
