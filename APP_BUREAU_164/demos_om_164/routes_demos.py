@@ -12,7 +12,9 @@ from APP_BUREAU_164.erreurs.exceptions import *
 
 @app.route('/index')
 def index():
-    return "Hello, le MONDE du Module 164 !"
+    return "Adieu ct'équipe et bienvenu sur mon projet du Module 164. " \
+           "Si tu as cliqué ici c'est que tu es très curieux et je t'en félicite." \
+           "Merci Mr. Maccaud pour cette année ;) "
 
 
 @app.route('/')

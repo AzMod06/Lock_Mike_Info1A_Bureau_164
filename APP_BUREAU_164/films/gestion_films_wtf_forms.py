@@ -16,7 +16,7 @@ class FormWTFAddFilm(FlaskForm):
         Dans le formulaire "genres_ajouter_wtf.html" on impose que le champ soit rempli.
         Définition d'un "bouton" submit avec un libellé personnalisé.
     """
-    nom_film_regexp = ""
+    nom_film_regexp = "^([A-Z]|[a-zÀ-ÖØ-öø-ÿ])[A-Za-zÀ-ÖØ-öø-ÿ]*['\- ]?[A-Za-zÀ-ÖØ-öø-ÿ]+$"
     nom_film_add_wtf = StringField("Nom du collaborateur ", validators=[Length(min=2, max=2000, message="min 2 max 20"),
                                                                Regexp(nom_film_regexp,
                                                                       message="Pas de chiffres, de caractères "
@@ -33,10 +33,30 @@ class FormWTFUpdateFilm(FlaskForm):
         Dans le formulaire "film_update_wtf.html" on impose que le champ soit rempli.
         Définition d'un "bouton" submit avec un libellé personnalisé.
     """
-
-    nom_film_update_wtf = StringField("Modifier le prénom", widget=TextArea())
-    duree_film_update_wtf = StringField("Modifier le nom", widget=TextArea())
-    description_film_update_wtf = StringField("Modifier l'alias ", widget=TextArea())
+    nom_film_regexp = "^([A-Z]|[a-zÀ-ÖØ-öø-ÿ])[A-Za-zÀ-ÖØ-öø-ÿ]*['\- ]?[A-Za-zÀ-ÖØ-öø-ÿ]+$"
+    nom_film_update_wtf = StringField("Modifier le prénom", validators=[Length(min=2, max=2000, message="min 2 max 20"),
+                                                               Regexp(nom_film_regexp,
+                                                                      message="Pas de chiffres, de caractères "
+                                                                              "spéciaux, "
+                                                                              "d'espace à double, de double "
+                                                                              "apostrophe, de double trait union")
+                                                               ])
+    duree_film_regexp = "^([A-Z]|[a-zÀ-ÖØ-öø-ÿ])[A-Za-zÀ-ÖØ-öø-ÿ]*['\- ]?[A-Za-zÀ-ÖØ-öø-ÿ]+$"
+    duree_film_update_wtf= StringField("Modifier le nom ", validators=[Length(min=2, max=2000, message="min 2 max 20"),
+                                                               Regexp(duree_film_regexp,
+                                                                      message="Pas de chiffres, de caractères "
+                                                                              "spéciaux, "
+                                                                              "d'espace à double, de double "
+                                                                              "apostrophe, de double trait union")
+                                                               ])
+    description_film_regexp = "^([A-Z]|[a-zÀ-ÖØ-öø-ÿ])[A-Za-zÀ-ÖØ-öø-ÿ]*['\- ]?[A-Za-zÀ-ÖØ-öø-ÿ]+$"
+    description_film_update_wtf = StringField("Modifier l'alias ",  validators=[Length(min=2, max=2000, message="min 2 max 20"),
+                                                               Regexp(description_film_regexp,
+                                                                      message="Pas de chiffres, de caractères "
+                                                                              "spéciaux, "
+                                                                              "d'espace à double, de double "
+                                                                              "apostrophe, de double trait union")
+                                                               ])
 
     submit = SubmitField("Confirmer la modification")
 

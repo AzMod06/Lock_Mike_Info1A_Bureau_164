@@ -60,11 +60,11 @@ def genres_afficher(order_by, id_genre_sel):
                     flash("""La table "t_bureau" est vide. !!""", "warning")
                 elif not data_genres and id_genre_sel > 0:
                     # Si l'utilisateur change l'id_genre dans l'URL et que le genre n'existe pas,
-                    flash(f"Le genre demandé n'existe pas !!", "warning")
+                    flash(f"Le bureau demandé n'existe pas !!", "warning")
                 else:
                     # Dans tous les autres cas, c'est que la table "t_genre" est vide.
                     # OM 2020.04.09 La ligne ci-dessous permet de donner un sentiment rassurant aux utilisateurs.
-                    flash(f"Données genres affichés !!", "success")
+                    flash(f"Données bureaux affichés !!", "success")
 
         except Exception as Exception_genres_afficher:
             raise ExceptionGenresAfficher(f"fichier : {Path(__file__).name}  ;  "
