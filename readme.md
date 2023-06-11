@@ -7,6 +7,7 @@ Un serveur MySql doit être installé
 - ou XAMPP : https://www.apachefriends.org/fr/download.html
 - ou UWAMP : https://www.uwamp.com/fr/?page=download
 - ou MAMP : https://www.mamp.info/en/downloads/
+
 Python doit être installé.
 
 - ATTENTION : Cocher la case pour que le “PATH” intègre le programme Python
