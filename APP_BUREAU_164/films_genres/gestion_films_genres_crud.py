@@ -11,8 +11,8 @@ from flask import session
 from flask import url_for
 
 
-from APP_FILMS_164.database.database_tools import DBconnection
-from APP_FILMS_164.erreurs.exceptions import *
+from APP_BUREAU_164.database.database_tools import DBconnection
+from APP_BUREAU_164.erreurs.exceptions import *
 
 
 
@@ -204,12 +204,12 @@ def update_genre_film_selected():
             # Récupère ce que l'utilisateur veut modifier comme genres dans le composant "tags-selector-tagselect"
             # dans le fichier "genres_films_modifier_tags_dropbox.html"
             new_lst_str_genres_films = request.form.getlist('name_select_tags')
-            print("new_lst_str_genres_films ", new_lst_str_genres_films)
+            print("new_lst_str_reservation ", new_lst_str_genres_films)
 
             # OM 2021.05.02 Exemple : Dans "name_select_tags" il y a ['4','65','2']
             # On transforme en une liste de valeurs numériques. [4,65,2]
             new_lst_int_genre_film_old = list(map(int, new_lst_str_genres_films))
-            print("new_lst_genre_film ", new_lst_int_genre_film_old, "type new_lst_genre_film ",
+            print("new_lst_reservation ", new_lst_int_genre_film_old, "type new_lst_reservation ",
                   type(new_lst_int_genre_film_old))
 
             # Pour apprécier la facilité de la vie en Python... "les ensembles en Python"
@@ -217,12 +217,12 @@ def update_genre_film_selected():
             # OM 2021.05.02 Une liste de "id_genre" qui doivent être effacés de la table intermédiaire "t_genre_film".
             lst_diff_genres_delete_b = list(set(old_lst_data_genres_films_attribues) -
                                             set(new_lst_int_genre_film_old))
-            print("lst_diff_genres_delete_b ", lst_diff_genres_delete_b)
+            print("lst_diff_bureau_delete_b ", lst_diff_genres_delete_b)
 
             # Une liste de "id_genre" qui doivent être ajoutés à la "t_genre_film"
             lst_diff_genres_insert_a = list(
                 set(new_lst_int_genre_film_old) - set(old_lst_data_genres_films_attribues))
-            print("lst_diff_genres_insert_a ", lst_diff_genres_insert_a)
+            print("lst_diff_bureau_insert_a ", lst_diff_genres_insert_a)
 
             # SQL pour insérer une nouvelle association entre
             # "fk_film"/"id_film" et "fk_genre"/"id_genre" dans la "t_genre_film"
