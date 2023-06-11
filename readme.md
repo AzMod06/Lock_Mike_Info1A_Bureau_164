@@ -42,7 +42,7 @@ Installer “GIT”
 - Ouvrir le fichier .env à la racine du projet, contrôler les indications de connexion pour la bd.
 
 # Test simple de la connexion à la BD
-- Ouvrir le fichier APP_ETAM_164/database/2_test_connection_bd.py
+- Ouvrir le fichier APP_BUREAU_164/database/2_test_connection_bd.py
 - Cliquer avec le bouton droit sur l’onglet de ce fichier et choisir “run” (CTRL-MAJ-F10)
 
 # Démarrer le microframework FLASK
